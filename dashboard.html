@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Aurora Bank — Personal Banking Dashboard</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/extra.css">
+</head>
+<body>
+  <div class="glow glow-one"></div><div class="glow glow-two"></div>
+  <main>
+    <nav>
+      <a class="brand" href="/"><span>✦</span> AURORA <em>BANK</em></a>
+      <div class="nav-right">
+        <button id="balanceCheck" class="ghost">Check balance</button>
+        <span class="secure">● Secure banking session</span>
+      </div>
+    </nav>
+    <section id="dashboard">
+      <header class="dash-head">
+        <div>
+          <p class="eyebrow">PERSONAL DIGITAL BANKING</p>
+          <h2>Good day, <i id="customerName">Customer</i>.</h2>
+        </div>
+        <button id="logout" class="ghost">Sign out</button>
+      </header>
+      <div class="dashboard-grid">
+        <section class="balance-card">
+          <span>PRIMARY ACCOUNT (Feature 1 & 2)</span>
+          <h1 id="balance">₹0.00</h1>
+          <div>
+            <span id="accountType">Savings account</span>
+            <span id="accountId">A/C —</span>
+          </div>
+          <div class="pocket-strip">
+            <small>Secondary Wallet (Feature 5): <strong id="secondaryBal">₹0.00</strong></small>
+            <button id="quickOwnTransfer" class="mini-btn">Transfer ⇄</button>
+          </div>
+        </section>
+        <section class="quick">
+          <h3>Quick transactions</h3>
+          <div>
+            <button data-action="deposit">↓<small>Add money</small></button>
+            <button data-action="withdraw">↑<small>Withdraw</small></button>
+            <button data-action="transfer">→<small>Pay / Transfer</small></button>
+          </div>
+          <div class="account-tools">
+            <button id="resetPin">Reset PIN</button>
+            <button id="openAddPayeeModal">+ Add Payee</button>
+          </div>
+        </section>
+      </div>
+
+      <section class="hub-container">
+        <div class="hub-tabs">
+          <button class="tab-btn active" data-tab="tab-transfers">💸 Transfers & Payees</button>
+          <button class="tab-btn" data-tab="tab-cards">💳 Cards Hub</button>
+          <button class="tab-btn" data-tab="tab-bills">⚡ Bills & Recharges</button>
+          <button class="tab-btn" data-tab="tab-wealth">📈 Wealth & Deposits</button>
+          <button class="tab-btn" data-tab="tab-services">🛡️ Loans & Security</button>
+          <button class="tab-btn" data-tab="tab-portfolio">📊 Portfolio Graph</button>
+          <button class="tab-btn" data-tab="tab-customer-details">👤 Customer Details</button>
+        </div>
+
+        <div class="tab-content">
+          <div id="tab-transfers" class="tab-pane active">
+            <div class="pane-grid">
+              <div class="card-box">
+                <h4>Own Account Transfer (Feature 5)</h4>
+                <p class="muted">Move money instantly between primary account and secondary pocket wallet.</p>
+                <form id="ownTransferForm">
+                  <label>Direction
+                    <select name="direction">
+                      <option value="TO_SECONDARY">Primary A/C → Secondary Pocket</option>
+                      <option value="FROM_SECONDARY">Secondary Pocket → Primary A/C</option>
+                    </select>
+                  </label>
+                  <label>Amount (₹)<input name="amount" type="number" min="1" step="0.01" required placeholder="500.00"></label>
+                  <button class="primary small-btn">Move Funds <b>→</b></button>
+                </form>
+              </div>
+              <div class="card-box">
+                <div class="box-head">
+                  <h4>Saved Beneficiaries (Feature 6)</h4>
+                  <button id="btnOpenAddPayee" class="text-button">+ New Payee</button>
+                </div>
+                <div id="payeeList" class="compact-list"><p class="empty">No payees added yet.</p></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="tab-cards" class="tab-pane">
+            <div class="pane-grid">
+              <div class="virtual-card debit">
+                <div class="card-top"><span>AURORA PLATINUM DEBIT (Feature 9)</span><span id="debitStatus" class="status-badge active">ACTIVE</span></div>
+                <div class="chip">▦</div>
+                <div class="card-number" id="debitNumber">4592 •••• •••• ----</div>
+                <div class="card-meta">
+                  <small>Daily Limit: ₹50,000</small>
+                  <button id="toggleDebitBtn" class="block-toggle">Block Card (Feature 11)</button>
+                </div>
+              </div>
+              <div class="virtual-card credit">
+                <div class="card-top"><span>AURORA EMERALD CREDIT (Feature 8)</span><span id="creditStatus" class="status-badge active">ACTIVE</span></div>
+                <div class="chip">▦</div>
+                <div class="card-number" id="creditNumber">5241 •••• •••• ----</div>
+                <div class="card-meta">
+                  <small>Limit: ₹1,50,000 | Avail: <span id="creditAvail">₹1,24,000</span></small>
+                  <button id="toggleCreditBtn" class="block-toggle">Block Card (Feature 10)</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="tab-bills" class="tab-pane">
+            <div class="card-box max-w">
+              <h4>BBPS Utility Payments & Recharges (19, 20, 21, 22, 23)</h4>
+              <p class="muted">Instant debits with official ledger receipts.</p>
+              <form id="billPayForm" class="form-grid">
+                <label>Category
+                  <select name="category" id="billCategory">
+                    <option value="Mobile Prepaid">Mobile Prepaid Recharge (19)</option>
+                    <option value="FASTag">FASTag Toll Recharge (20)</option>
+                    <option value="DTH">DTH Satellite TV (21)</option>
+                    <option value="Electricity">Electricity Board Bill (22)</option>
+                    <option value="Mobile Postpaid">Mobile Postpaid Payment (23)</option>
+                  </select>
+                </label>
+                <label>Provider / Board<input name="provider" placeholder="e.g. Jio, Airtel, BESCOM, NHAI" required></label>
+                <label>Consumer / Mobile No.<input name="identifier" placeholder="e.g. 9876543210" required></label>
+                <label>Amount (₹)<input name="amount" type="number" min="10" step="1" required placeholder="499"></label>
+                <button class="primary full-col">Pay & Recharge <b>→</b></button>
+              </form>
+            </div>
+          </div>
+
+          <div id="tab-wealth" class="tab-pane">
+            <div class="three-col-grid">
+              <div class="card-box">
+                <h4>Fixed Deposit (Feature 12)</h4>
+                <p class="muted">Earn up to 7.10% guaranteed interest.</p>
+                <form id="fdForm">
+                  <label>Amount (₹)<input name="amount" type="number" min="5000" placeholder="Min 5,000" required></label>
+                  <label>Tenure
+                    <select name="tenureMonths">
+                      <option value="6">6 Months @ 6.0%</option>
+                      <option value="12" selected>12 Months @ 7.1%</option>
+                      <option value="24">24 Months @ 7.1%</option>
+                    </select>
+                  </label>
+                  <button class="primary small-btn">Book FD <b>→</b></button>
+                </form>
+              </div>
+              <div class="card-box">
+                <h4>Recurring Deposit (Feature 13)</h4>
+                <p class="muted">Monthly savings at 6.80% fixed interest.</p>
+                <form id="rdForm">
+                  <label>Monthly Installment (₹)<input name="monthlyAmount" type="number" min="1000" placeholder="Min 1,000" required></label>
+                  <label>Tenure
+                    <select name="tenureMonths">
+                      <option value="12">12 Months</option>
+                      <option value="24">24 Months</option>
+                    </select>
+                  </label>
+                  <button class="primary small-btn">Start RD <b>→</b></button>
+                </form>
+              </div>
+              <div class="card-box">
+                <h4>Market & Schemes (14, 15, 16)</h4>
+                <div class="action-stack">
+                  <div class="stack-row">
+                    <div><strong>PPF Account (14)</strong><small id="ppfStatusTxt">Govt Tax-free Scheme (7.1%)</small></div>
+                    <button id="openPpfModal" class="mini-btn">Open PPF</button>
+                  </div>
+                  <div class="stack-row">
+                    <div><strong>Demat Account (15)</strong><small id="dematStatusTxt">Trade NSE / BSE equities</small></div>
+                    <button id="btnOpenDemat" class="mini-btn">Activate</button>
+                  </div>
+                  <div class="stack-row">
+                    <div><strong>Mutual Funds (16)</strong><small>Top diversified index funds</small></div>
+                    <button id="openMfModal" class="mini-btn">Start SIP</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="active-deposits-wrap">
+              <h4>Your Active Term Deposits & Investments</h4>
+              <div id="depositsList" class="compact-list"><p class="empty">No active Fixed Deposits or investments yet.</p></div>
+            </div>
+          </div>
+
+          <div id="tab-services" class="tab-pane">
+            <div class="pane-grid">
+              <div class="card-box">
+                <h4>Credit & Protection (17 & 18)</h4>
+                <div class="stack-row mb-12">
+                  <div><strong>Loan Services (Feature 17)</strong><small>Pre-approved Home, Personal, or Auto loans</small></div>
+                  <button id="btnOpenLoanModal" class="primary small-btn">Apply Loan</button>
+                </div>
+                <div class="stack-row">
+                  <div><strong>Insurance Services (Feature 18)</strong><small>Life and Health comprehensive cover</small></div>
+                  <button id="btnOpenInsuranceModal" class="primary small-btn">Buy Policy</button>
+                </div>
+              </div>
+              <div class="card-box">
+                <h4>Security & Protection (24 & 25)</h4>
+                <div class="stack-row mb-12">
+                  <div><strong>Stop Cheque Payment (Feature 24)</strong><small>Immediately halt clearance of an issued cheque</small></div>
+                  <button id="btnOpenStopChequeModal" class="mini-btn danger">Stop Cheque</button>
+                </div>
+                <div class="stack-row">
+                  <div><strong>Fraud Reporting (Feature 25)</strong><small>Report suspicious or unauthorized activity</small></div>
+                  <button id="btnOpenFraudModal" class="mini-btn danger">Report Fraud</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="tab-portfolio" class="tab-pane">
+            <div class="analytics-heading">
+              <div>
+                <p class="eyebrow">CUSTOMER GROWTH</p>
+                <h3>Portfolio Graph</h3>
+                <p class="muted">5,000 preloaded sample customers + new website signups. Every successful signup increases the total.</p>
+              </div>
+            </div>
+            <div class="portfolio-stat-grid">
+              <article><small>Starting customers</small><strong id="portfolioStartingCustomers">5,000</strong></article>
+              <article><small>New customers</small><strong id="portfolioNewCustomers">0</strong></article>
+              <article><small>Total customers</small><strong id="portfolioTotalCustomers">5,000</strong></article>
+            </div>
+            <div class="card-box portfolio-graph-card">
+              <h4>Customer Growth Graph</h4>
+              <p class="muted">Starting base + newly registered users</p>
+              <canvas id="customerGrowthChart" height="300" aria-label="Customer growth portfolio graph"></canvas>
+            </div>
+            <div class="card-box portfolio-graph-card city-chart-card">
+              <h4>City-wise Customer Count</h4>
+              <p class="muted">Move your cursor over any city bar to see its customer count.</p>
+              <div class="city-chart-wrap" id="cityCustomerChartWrap">
+                <canvas id="cityCustomerChart" height="360" aria-label="Customer counts for each Aurora Bank branch city"></canvas>
+                <div id="cityChartTooltip" class="city-chart-tooltip" role="status" hidden></div>
+              </div>
+              <p class="city-chart-note">Includes 5,000 preloaded sample customer records distributed across the 10 demo branch cities, plus every new website signup. Sample records are fictional demo data.</p>
+            </div>
+          </div>
+
+          <div id="tab-customer-details" class="tab-pane">
+            <div class="analytics-heading">
+              <div>
+                <p class="eyebrow">PERSONAL BANKING PROFILE</p>
+                <h3>Customer Details</h3>
+                <p class="muted">Your personal and bank account details from your signup.</p>
+              </div>
+            </div>
+            <div id="portfolioProfile" class="card-box portfolio-profile">
+              <p class="muted">Loading your customer details…</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="activity">
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">ACTIVITY & PASSBOOK</p>
+            <h3>Recent transactions</h3>
+          </div>
+          <div class="statement-actions">
+            <span id="interest"></span>
+            <button id="btnDownloadStatement" class="ghost">⬇ Download Statement (CSV) (Feature 3)</button>
+          </div>
+        </div>
+        <div id="transactions" class="transactions"></div>
+      </section>
+    </section>
+  </main>
+  <footer>© 2026 Aurora Bank · 25 Feature Banking Engine</footer>
+
+  <dialog id="actionModal">
+    <button class="close" data-close>×</button>
+    <p class="eyebrow" id="actionEyebrow">TRANSACTION</p>
+    <h2 id="actionTitle">Make a transfer</h2>
+    <form id="actionForm">
+      <div id="recipientField" hidden>
+        <label>Select from Saved Payees
+          <select id="payeeSelectDropdown"><option value="">-- Or enter account number manually --</option></select>
+        </label>
+        <label>Recipient account number<input name="toAccount" id="toAccountInput" type="number" placeholder="e.g. 1002"></label>
+        <label>Reference note<input name="note" placeholder="What is this for?"></label>
+      </div>
+      <label>Amount (₹)<input name="amount" type="number" min="1" step="0.01" placeholder="0.00" required></label>
+      <button class="primary" id="actionSubmit">Continue <b>→</b></button>
+    </form>
+  </dialog>
+
+  <dialog id="addPayeeModal">
+    <button class="close" data-close>×</button>
+    <p class="eyebrow">BENEFICIARY</p>
+    <h2>Add New Payee</h2>
+    <form id="addPayeeForm">
+      <label>Beneficiary Account Number<input name="accountNumber" type="number" placeholder="e.g. 1002" required></label>
+      <label>Full Name<input name="name" placeholder="Name as per bank records" required></label>
+      <label>Nickname (Optional)<input name="nickname" placeholder="e.g. Landlord, Mom"></label>
+      <button class="primary">Save Beneficiary <b>→</b></button>
+    </form>
+  </dialog>
+
+  <dialog id="ppfModal">
+    <button class="close" data-close>×</button>
+    <p class="eyebrow">GOVERNMENT SCHEME</p>
+    <h2>Open PPF Account</h2>
+    <form id="ppfForm">
+      <p class="muted">Public Provident Fund offers tax deductions under 80C with 7.1% compounded annual interest.</p>
+      <label>Initial Contribution (₹)<input name="initialDeposit" type="number" min="500" max="150000" value="1000" required></label>
+      <button class="primary">Confirm PPF Opening <b>→</b></button>
+    </form>
+  </dialog>
+
+  <dialog id="mfModal">
+    <button class="close" data-close>×</button>
+    <p class="eyebrow">WEALTH MANAGEMENT</p>
+    <h2>Invest in Mutual Funds</h2>
+    <form id="mfForm">
+      <label>Select Scheme
+        <select name="fundName">
+          <option value="Aurora Nifty 50 Index Fund">Aurora Nifty 50 Index Fund (Large Cap)</option>
+          <option value="Aurora Emerging Bluechip Fund">Aurora Emerging Bluechip Fund (Mid Cap)</option>
+          <option value="Aurora Liquid Cash Fund">Aurora Liquid Cash Fund (Debt)</option>
+        </select>
+      </label>
+      <label>SIP Amount (₹)<input name="amount" type="number" min="500" value="1000" required></label>
+      <button class="primary">Invest Now <b>→</b></button>
+    </form>
+  </dialog>
+
+  <dialog id="loanModal">
+    <button class="close" data-close>×</button>
+    <p class="eyebrow">CREDIT FACILITY</p>
+    <h2>Apply for a Loan</h2>
+    <form id="loanForm">
+      <label>Loan Type
+        <select name="loanType">
+          <option value="Personal Loan">Personal Loan (11.5% p.a.)</option>
+          <option value="Home Loan">Home Loan (8.5% p.a.)</option>
+          <option value="Vehicle Loan">Vehicle Loan (9.5% p.a.)</option>
+        </select>
+      </label>
+      <label>Amount (₹)<input name="amount" type="number" min="20000" max="2500000" step="5000" value="100000" required></label>
+      <label>Tenure (Years)
+        <select name="tenureYears">
+          <option value="1">1 Year</option><option value="2">2 Years</option>
+          <option value="3" selected>3 Years</option><option value="5">5 Years</option>
+        </select>
+      </label>
+      <button class="primary">Submit Application <b>→</b></button>
+    </form>
+  </dialog>
+
+  <dialog id="insuranceModal">
+    <button class="close" data-close>×</button>
+    <p class="eyebrow">PROTECTION</p>
+    <h2>Buy Insurance Plan</h2>
+    <form id="insuranceForm">
+      <label>Plan Type
+        <select name="plan" id="planSelect">
+          <option value="Aurora Term Life Cover" data-sum="10000000" data-prem="1200">Term Life Cover (₹1 Crore) — ₹1,200/yr</option>
+          <option value="Aurora Comprehensive Health" data-sum="1000000" data-prem="4500">Comprehensive Health (₹10 Lakh) — ₹4,500/yr</option>
+        </select>
+      </label>
+      <input type="hidden" name="sumAssured" id="sumAssuredInput" value="10000000">
+      <input type="hidden" name="premium" id="premiumInput" value="1200">
+      <button class="primary">Activate Policy <b>→</b></button>
+    </form>
+  </dialog>
+
+  <dialog id="stopChequeModal">
+    <button class="close" data-close>×</button>
+    <p class="eyebrow">CHEQUE BOOK SERVICE</p>
+    <h2>Stop Cheque Payment</h2>
+    <form id="stopChequeForm">
+      <label>6-Digit Cheque Number<input name="chequeNumber" maxlength="6" pattern="\\d{6}" placeholder="e.g. 104523" required></label>
+      <label>Reason for Stop Order<input name="reason" placeholder="e.g. Cheque lost, incorrect amount" required></label>
+      <button class="primary danger">Confirm Stop Payment <b>→</b></button>
+    </form>
+  </dialog>
+
+  <dialog id="fraudModal">
+    <button class="close" data-close>×</button>
+    <p class="eyebrow">SECURITY INCIDENT</p>
+    <h2>Report Fraudulent Activity</h2>
+    <form id="fraudForm">
+      <label>Transaction ID (if applicable)<input name="txId" placeholder="Optional reference ID"></label>
+      <label>Describe the suspicious activity<textarea name="description" rows="3" placeholder="Provide details of unauthorized activity..." required></textarea></label>
+      <button class="primary danger">Submit Fraud Report <b>→</b></button>
+    </form>
+  </dialog>
+
+  <dialog id="pinModal">
+    <button class="close" data-close>×</button>
+    <p class="eyebrow">SECURITY</p>
+    <h2>Reset your PIN</h2>
+    <form id="pinForm">
+      <label>Current PIN<input name="currentPin" type="password" inputmode="numeric" maxlength="4" required></label>
+      <label>New 4-digit PIN<input name="newPin" type="password" inputmode="numeric" maxlength="4" required></label>
+      <button class="primary">Update PIN <b>→</b></button>
+    </form>
+  </dialog>
+
+  <div id="toast"></div>
+  <script src="/app.js"></script>
+</body>
+</html>

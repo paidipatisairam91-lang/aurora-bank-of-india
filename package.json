@@ -1,0 +1,10 @@
+{
+  "name": "aurora-bank-portal",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Aurora Bank demo: C++17 fraud engine with Node.js API and HTML/CSS/JavaScript frontend",
+  "scripts": {
+    "start": "node server.js",
+    "test:fraud": "g++ fraud_engine.cpp -std=c++17 -O2 -o fraud_engine && ./fraud_engine 60000 100000 2"
+  }
+}

@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap');
+:root { --ink: #10221e; --green: #0a5c4d; --lime: #cdf066; --paper: #f6f7f1; --muted: #66736e; --line: #dbe1dc; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'DM Sans', sans-serif; }
+main { max-width: 1220px; margin: auto; padding: 24px 44px; position: relative; overflow: hidden; min-height: calc(100vh - 42px); }
+nav { height: 58px; display: flex; justify-content: space-between; align-items: center; }
+.brand { font-weight: 700; letter-spacing: 2px; text-decoration: none; color: var(--ink); font-size: 17px; }
+.brand span { color: var(--green); font-size: 24px; }
+.brand em { font-style: normal; font-weight: 400; }
+.nav-right { display: flex; gap: 24px; align-items: center; }
+.secure { font-size: 12px; color: var(--muted); }
+.ghost { border: 1px solid var(--ink); background: transparent; border-radius: 50px; padding: 10px 18px; font: inherit; font-weight: 600; cursor: pointer; }
+.hero { padding: 80px 6% 70px; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; }
+.eyebrow { font: 11px 'DM Mono'; letter-spacing: 1.6px; color: var(--green); margin: 0 0 15px; font-weight: bold; }
+.hero h1 { font: 700 clamp(44px, 5.5vw, 72px)/.98 'Playfair Display'; letter-spacing: -3px; margin: 0; }
+.hero h1 i, h2 i { color: var(--green); }
+.lead { max-width: 430px; font-size: 17px; line-height: 1.55; color: var(--muted); margin: 24px 0; }
+.actions { display: flex; align-items: center; gap: 22px; }
+.primary { border: 0; border-radius: 50px; background: var(--green); color: white; padding: 14px 22px; font: 600 14px 'DM Sans'; cursor: pointer; transition: transform .15s ease; }
+.primary:hover { transform: translateY(-1px); }
+.primary b { font-size: 18px; margin-left: 8px; }
+.text-button, .switch button { border: 0; background: none; color: var(--green); text-decoration: underline; font: 600 14px 'DM Sans'; cursor: pointer; }
+.trust { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 45px; color: var(--muted); font-size: 12px; }
+.card-art { height: 320px; position: relative; }
+.bank-card { background: linear-gradient(135deg, #075044, #11816a); border-radius: 22px; box-shadow: 15px 24px 38px #0d372d33; color: white; width: 360px; height: 225px; padding: 26px; position: absolute; top: 35px; left: 40px; transform: rotate(-6deg); }
+.card-top, .card-bottom { display: flex; justify-content: space-between; letter-spacing: 1px; font-size: 13px; }
+.card-top small { font-size: 9px; }
+.chip { margin-top: 36px; color: #d5c470; font-size: 27px; }
+.card-number { font: 18px 'DM Mono'; margin-top: 15px; letter-spacing: 2px; }
+.card-bottom { margin-top: 23px; font-size: 10px; }
+.float-card { position: absolute; bottom: 5px; right: 4px; padding: 18px 20px; border-radius: 14px; background: white; box-shadow: 0 14px 35px #10221e1c; min-width: 220px; }
+.float-card small, .float-card span { display: block; font-size: 10px; color: var(--muted); letter-spacing: .5px; }
+.float-card strong { font-size: 22px; margin: 7px 0; display: block; }
+.float-card .up { color: #168561; }
+.features { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); padding: 30px 6%; gap: 35px; }
+.features article { border-right: 1px solid var(--line); padding-right: 25px; }
+.features article:last-child { border: 0; }
+.features b { font: 12px 'DM Mono'; color: var(--green); }
+.features h3 { margin: 14px 0 8px; font-size: 17px; }
+.features p { color: var(--muted); font-size: 14px; line-height: 1.5; margin: 0; }
+.dash-head { padding: 40px 6% 25px; display: flex; justify-content: space-between; align-items: start; }
+.dash-head h2 { font: 700 40px/1 'Playfair Display'; margin: 0; letter-spacing: -1.5px; }
+.dashboard-grid { padding: 0 6%; display: grid; grid-template-columns: 1.3fr .7fr; gap: 20px; }
+.balance-card { border-radius: 22px; padding: 28px; background: linear-gradient(120deg, #073e35, #0d6b58); color: #fff; min-height: 200px; }
+.balance-card > span { font: 11px 'DM Mono'; letter-spacing: 1.3px; opacity: .72; }
+.balance-card h1 { font-size: 38px; margin: 18px 0 20px; letter-spacing: -1px; }
+.balance-card div { display: flex; justify-content: space-between; font-size: 13px; opacity: .75; }
+.quick { padding: 24px; background: #fff; border: 1px solid var(--line); border-radius: 22px; }
+.quick h3, .activity h3 { margin: 0; font-size: 18px; }
+.quick > div { display: flex; gap: 9px; margin-top: 24px; }
+.quick button { flex: 1; border: 0; border-radius: 12px; background: #edf1ed; color: var(--green); font-size: 20px; padding: 12px 4px; cursor: pointer; }
+.quick small { display: block; color: var(--ink); font: 11px 'DM Sans'; margin-top: 6px; }
+.activity { padding: 38px 6%; }
+.section-title { display: flex; justify-content: space-between; align-items: end; margin-bottom: 16px; }
+.section-title > span { font-size: 12px; color: var(--green); }
+.transactions { background: white; border: 1px solid var(--line); border-radius: 18px; padding: 0 20px; }
+.transactions article { display: flex; align-items: center; gap: 14px; padding: 17px 3px; border-bottom: 1px solid var(--line); }
+.transactions article:last-child { border: 0; }
+.tx-icon { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: #e4f4ec; color: #168561; }
+.tx-icon.out { background: #fff0ef; color: #d05e55; }
+.transactions article div:nth-child(2) { flex: 1; }
+.transactions strong, .transactions small { display: block; }
+.transactions small { color: var(--muted); font-size: 12px; margin-top: 3px; }
+.transactions article > b { font-size: 14px; color: #168561; }
+.transactions article > b.negative { color: #cf5e53; }
+.empty { color: var(--muted); padding: 18px 0; }
+dialog { border: 0; border-radius: 20px; padding: 32px; width: min(440px, calc(100% - 30px)); box-shadow: 0 28px 80px #0004; color: var(--ink); }
+dialog::backdrop { background: #10221e88; backdrop-filter: blur(4px); }
+dialog h2 { font: 700 30px 'Playfair Display'; margin: 0 0 20px; }
+.close { float: right; border: 0; background: #edf1ed; border-radius: 50%; width: 29px; height: 29px; font-size: 20px; cursor: pointer; }
+form label { display: block; font-size: 12px; font-weight: 600; margin: 12px 0; }
+input, select { display: block; width: 100%; border: 1px solid #ccd5cf; border-radius: 9px; padding: 11px; margin-top: 6px; font: 14px 'DM Sans'; background: #fff; }
+form .primary { margin-top: 14px; width: 100%; }
+.switch { text-align: center; font-size: 13px; color: var(--muted); }
+.demo { text-align: center; font: 11px 'DM Mono'; color: var(--muted); margin-top: 20px; }
+#toast { position: fixed; bottom: 28px; left: 50%; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: #13362e; color: white; padding: 12px 20px; border-radius: 9px; font-size: 14px; transition: .25s; z-index: 999; }
+#toast.show { opacity: 1; transform: translate(-50%, 0); }
+#toast.bad { background: #9e3e38; }
+.glow { position: fixed; border-radius: 50%; filter: blur(90px); opacity: .25; pointer-events: none; }
+.glow-one { width: 240px; height: 240px; background: #b7e166; right: -100px; top: 100px; }
+.glow-two { width: 200px; height: 200px; background: #79d4bd; left: -120px; bottom: 0; }
+footer { text-align: center; padding: 14px; color: var(--muted); font-size: 11px; border-top: 1px solid var(--line); }
+@media(max-width: 760px) {
+  main { padding: 18px 20px; }
+  .secure { display: none; }
+  .hero { padding: 50px 3% 40px; display: block; }
+  .card-art { margin-top: 45px; height: 280px; }
+  .bank-card { left: 4px; width: min(360px, 90vw); }
+  .features, .dashboard-grid { grid-template-columns: 1fr; }
+  .features article { border-right: 0; border-bottom: 1px solid var(--line); padding: 14px 0; }
+  .dash-head { padding: 30px 3% 20px; }
+  .dash-head h2 { font-size: 32px; }
+  .dashboard-grid, .activity { padding-left: 3%; padding-right: 3%; }
+  .section-title { align-items: start; gap: 12px; flex-direction: column; }
+  .float-card { right: 0; }
+  .nav-right { gap: 8px; }
+}

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Aurora Bank — Digital Banking</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/extra.css">
+</head>
+<body>
+  <div class="glow glow-one"></div><div class="glow glow-two"></div>
+  <main>
+    <nav>
+      <a class="brand" href="#"><span>✦</span> AURORA <em>BANK</em></a>
+      <div class="nav-right">
+        <span class="secure">● Bank-grade demo security</span>
+        <button id="navLogin" class="ghost">Sign in</button>
+      </div>
+    </nav>
+    <section id="landing" class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">BANKING, REIMAGINED</p>
+        <h1>Money moves.<br><i>So should you.</i></h1>
+        <p class="lead">A beautifully simple way to manage your everyday finances, investments, bill payments, and cards in one place.</p>
+        <div class="actions">
+          <button class="primary" data-open="signup">Open an account <b>→</b></button>
+          <button class="text-button" data-open="login">Sign in to banking</button>
+        </div>
+        <div class="trust">
+          <span>⌁ Instant transfers</span>
+          <span>◈ 25 Digital services</span>
+          <span>◎ Card & Fraud security</span>
+        </div>
+      </div>
+      <div class="card-art">
+        <div class="bank-card">
+          <div class="card-top"><span>✦ AURORA</span><small>PLATINUM DEBIT</small></div>
+          <div class="chip">▦</div>
+          <div class="card-number">4592 &nbsp; •••• &nbsp; •••• &nbsp; 1001</div>
+          <div class="card-bottom"><span>VALUED CUSTOMER</span><span>VISA</span></div>
+        </div>
+        <div class="float-card">
+          <small>THIS MONTH</small>
+          <strong>₹4,85,000.00</strong>
+          <span class="up">↗ Active Digital Banking</span>
+        </div>
+      </div>
+    </section>
+    <section class="features">
+      <article><b>01</b><h3>Cards & Protection</h3><p>Instant block/unblock for Credit and Debit cards with real-time limits.</p></article>
+      <article><b>02</b><h3>Wealth & Deposits</h3><p>High-yield Fixed Deposits, Recurring Deposits, PPF, and Mutual Fund SIPs.</p></article>
+      <article><b>03</b><h3>Passbook & Utility Hub</h3><p>Direct BBPS recharges, instant electricity bill payments, and downloadable CSV statements.</p></article>
+    </section>
+  </main>
+  <footer>© 2026 Aurora Bank · A complete portfolio bank management system</footer>
+  <dialog id="authModal">
+    <button class="close" data-close>×</button>
+    <div id="loginPanel">
+      <p class="eyebrow">WELCOME BACK</p>
+      <h2>Sign in securely</h2>
+      <form id="loginForm">
+        <label>Account number<input name="accountNumber" inputmode="numeric" placeholder="e.g. 1001" required></label>
+        <label>4-digit PIN<input name="pin" type="password" inputmode="numeric" maxlength="4" placeholder="••••" required></label>
+        <button class="primary">Sign in <b>→</b></button>
+      </form>
+      <p class="switch">New to Aurora? <button data-switch="signup">Open an account</button></p>
+      <p class="demo">Demo Login: <strong>1001</strong> / PIN <strong>1234</strong></p>
+    </div>
+    <div id="signupPanel" hidden>
+      <p class="eyebrow">JOIN AURORA</p>
+      <h2>Open your account</h2>
+      <form id="signupForm">
+        <label>Full name<input name="name" placeholder="Your full name" autocomplete="name" required></label>
+        <label>Mobile number<input name="phone" type="tel" inputmode="tel" placeholder="10-digit mobile number" pattern="[0-9+ -]{10,16}" autocomplete="tel" required></label>
+        <label>Email address<input name="email" type="email" placeholder="you@example.com" autocomplete="email" required></label>
+        <label>Residential address<input name="address" placeholder="House no., street, area" autocomplete="street-address" required></label>
+        <label>Choose nearest branch city<select name="city" id="signupCity" required><option value="">Loading branch cities…</option></select></label>
+        <label>State<input name="state" id="signupState" placeholder="Selected city state" readonly required></label>
+        <div id="signupBranchInfo" class="branch-selection-note" aria-live="polite">Choose a city to view its Aurora Bank branch.</div>
+        <label>PIN code<input name="pincode" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" placeholder="6-digit PIN code" autocomplete="postal-code" required></label>
+        <label>Account type<select name="type"><option value="Savings">Savings Account</option><option value="Current">Current Account</option></select></label>
+        <label>Opening deposit (₹)<input name="initialDeposit" type="number" min="0" value="500" required></label>
+        <label>Choose a 4-digit PIN<input name="pin" type="password" inputmode="numeric" maxlength="4" placeholder="e.g. 1234" required></label>
+        <button class="primary">Create account <b>→</b></button>
+      </form>
+      <p class="switch">Already a customer? <button data-switch="login">Sign in</button></p>
+    </div>
+  </dialog>
+  <div id="toast"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
